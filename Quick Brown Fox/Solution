@@ -1,0 +1,84 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<boolean[]> board = new ArrayList<boolean[]>();
+        int counter = 0;
+        for (int i = 0; i < 8; i++){
+            board.add(getArray(sc.next()));
+        }
+        
+        
+        boolean fail = false;
+        for (int i = 0; i < 8; i++) {
+            if (fail) {
+                break;
+            }
+            // if queen, check rest of the row, vertically, and diagonally, then advance to next row
+           for (int j = 0; j < 8; j++) {
+               if (board.get(i)[j]) { // if queen
+                   counter++;
+                   for (int k = j + 1; k < 8; k++) { // check horizontal
+                       if (board.get(i)[k]) {
+                           fail = true;
+                           break;
+                       }
+                   }
+                   // check right-diagonal
+                   int row = i + 1;
+                   int column = j + 1;
+                   while (row < 8 && column < 8) {
+                       if (board.get(row)[column]) {
+                           fail = true;
+                           break;
+                       }
+                       row++;
+                       column++;
+                   }
+                   // check left-diagonal
+                   int lRow = i + 1;
+                   int lColumn = j - 1;
+                   while (lRow < 8 && lColumn >= 0) {
+                       if (board.get(lRow)[lColumn]) {
+                           fail = true;
+                           break;
+                       }
+                       lRow++;
+                       lColumn--;
+                   }                   
+                   // check vertical
+                   for (int l = i + 1; l < 8; l++) {
+                       if (board.get(l)[j]) {
+                           fail = true;
+                           break;
+                       }
+                   }
+               }
+           }
+       }
+        if (counter != 8) {
+            fail = true;
+        }
+        if (fail) {
+            System.out.println("invalid");
+        }
+        else {
+            System.out.println("valid");
+        }
+    }
+
+
+public static boolean[] getArray(String row) {
+            boolean[] array = new boolean[8];
+                for (int j = 0; j < 8; j++) {
+                    if (row.charAt(j) == '*') {
+                        array[j] = true;
+                    }
+                }            
+              return array;
+        }
+    
+}
