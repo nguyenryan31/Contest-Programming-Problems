@@ -1,0 +1,23 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        double n = sc.nextDouble();
+        double l = sc.nextDouble();
+        
+        double m = Math.sqrt(n);
+        while (m != Math.ceil(m)){
+            n -= 1;
+            m = n;
+        }
+        
+        System.out.println(String.format("%.0f", (m - Math.sqrt(l) + 1) * (m - Math.sqrt(l) + 1)));
+        
+    }
+}
