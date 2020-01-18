@@ -1,0 +1,45 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine();
+        for (int i = 0; i < n; i++) {
+            
+            boolean containsNumberOrSpecial = false;
+            boolean containsLower = false;
+            boolean containsUpper = false;
+            String password = sc.nextLine();
+            if (password.length() < 8 || password.length() > 24) {
+                System.out.print(password);
+                System.out.println(" - not secure.");
+                continue;
+            }
+            for (int j = 0; j < password.length(); j++) {
+                if (password.charAt(j) == '0' || password.charAt(j) == '1' || password.charAt(j) == '2' || password.charAt(j) == '3' || password.charAt(j) == '4' || password.charAt(j) == '5' || password.charAt(j) == '6' || password.charAt(j) == '7' || password.charAt(j) == '8' || password.charAt(j) == '9' || password.charAt(j) == '!' || password.charAt(j) == '@' || password.charAt(j) == '#' || password.charAt(j) == '$' || password.charAt(j) == '%' || password.charAt(j) == '^' || password.charAt(j) == '&' || password.charAt(j) == '*') {
+                    containsNumberOrSpecial = true;
+
+                }
+               
+               else if (password.charAt(j) >= 97 && password.charAt(j) <= 122) {
+                   containsLower = true;
+               }
+                else if (password.charAt(j) >= 65 && password.charAt(j) <= 90) {
+                    containsUpper = true;
+                }
+            }
+                            if (containsNumberOrSpecial && containsLower && containsUpper) {
+                    System.out.print(password);
+                    System.out.println(" - secure.");
+                }
+                else {
+                    System.out.print(password);
+                    System.out.println(" - not secure.");
+                }
+        }
+
+    }
+}
