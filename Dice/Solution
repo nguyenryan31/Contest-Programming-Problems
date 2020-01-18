@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNextLine()) {
+            int total = 0;
+            String line = sc.nextLine();
+            String[] stringArray = line.split(" ");
+            if (stringArray[0].equals("-1")) {
+                break;
+            }
+            int[] intArray = new int[stringArray.length];
+            for (int i = 0; i < stringArray.length; i++) {
+                intArray[i] = Integer.parseInt(stringArray[i]);
+            }
+            System.out.print("Minimum total: ");
+            System.out.println(intArray.length);
+            System.out.print("Maximum total: ");
+
+            for (int i = 0; i < intArray.length; i++) {
+                total += intArray[i];
+            }
+            System.out.println(total);
+        }
+    }
+}
