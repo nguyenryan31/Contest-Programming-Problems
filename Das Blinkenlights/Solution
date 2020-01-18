@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int p = sc.nextInt();
+        int q = sc.nextInt();
+        int s = sc.nextInt();
+        boolean answer = false;
+        
+        
+        
+    boolean[] blinks = new boolean[s + 1];
+        
+        
+        for(int i = 1; i*p <= s; i++){
+            blinks[i * p] = true;
+        }
+            
+        
+        for(int i = 1; i*q <= s; i++){
+            if (blinks[i * q] == true){
+                answer = true;
+            }
+            
+        }
+        
+        
+        if(answer == true){
+        System.out.println("yes");
+        }
+        else{
+            System.out.println("no");
+        }
+    }
+}
