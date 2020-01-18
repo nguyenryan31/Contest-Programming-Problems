@@ -1,0 +1,102 @@
+import java.io.*;
+import java.util.*;
+import java.math.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        for (int N = 0; N < n; N++) {
+            long leftTotal = sc.nextLong();
+            long rightTotal = 0;
+            List<Long> leftList = new ArrayList<>();
+            List<Long> rightList = new ArrayList<>();
+            
+            
+            helper(leftTotal, rightTotal, leftList, rightList, N, n);
+        }
+    }
+    
+static void helper(long leftTotal, long rightTotal, List<Long> leftList, List<Long> rightList, int N, int n) {
+        long power = 0;    
+        long testWeight = 1;
+        long onesTestWeight = 1;
+                     
+        if (leftTotal == rightTotal) {
+            System.out.print("left pan: ");
+            for (int i = 0; i < leftList.size(); i++) {
+                System.out.print(leftList.get(i));
+                System.out.print(" ");
+            }
+            System.out.println("");
+            System.out.print("right pan: ");
+            for (int i = 0; i < rightList.size(); i++) {
+                System.out.print(rightList.get(i));
+                System.out.print(" ");
+            }
+            if (N + 1 < n) {
+                System.out.println("");
+                System.out.println("");
+                }
+        }
+            
+        else if (leftTotal < rightTotal) {
+            
+            while(true) {
+                if (leftTotal + testWeight < rightTotal) {
+                    if (leftTotal + onesTestWeight < rightTotal) {
+                    power++;
+                    testWeight = Math.round(Math.pow(3, power));
+                    long working = 0;
+                    onesTestWeight = testWeight;
+                    working = onesTestWeight / 3;
+                    while (working > 0) {
+                        onesTestWeight += working;
+                        working /= 3;
+                    }
+                }
+                    else {
+                        break;
+                    }
+                
+            }   else {
+                    break;
+                }
+            }
+            
+
+            leftTotal += testWeight;
+            leftList.add(testWeight);
+            helper(leftTotal, rightTotal, leftList, rightList, N, n);
+        }
+        else {
+            while(true) {
+                if (rightTotal + testWeight < leftTotal) {
+                    if (rightTotal + onesTestWeight < leftTotal) {
+                    power++;
+                    testWeight = Math.round(Math.pow(3, power));
+                    long working = 0;
+                    onesTestWeight = testWeight;
+                    working = onesTestWeight / 3;
+                    while (working > 0) {
+                        onesTestWeight += working;
+                        working /= 3;
+                    }
+                }
+                    else {
+                        break;
+                    }
+                
+            }   else {
+                    break;
+                }
+            }
+            
+
+            rightTotal += testWeight;
+            rightList.add(testWeight);
+            helper(leftTotal, rightTotal, leftList, rightList, N, n);       
+        }
+    }
+}
