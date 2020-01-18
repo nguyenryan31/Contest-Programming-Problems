@@ -1,0 +1,51 @@
+//get next character and set counter to 1
+
+//if scanner has next character
+    
+//if next character == first character, increase counter by 1
+//if next character =/= first character, print character and counter, change first character to new character
+
+
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String task = sc.next();
+        if (task.equals("E")){
+            String[] string = sc.next().split("");
+            String currentChar = string[1];
+            int counter = 1;
+            for (int i = 2; i < string.length; i++){
+                if (string[i].equals(currentChar)){
+                    counter += 1;
+                } else{
+                    System.out.print(currentChar + counter);
+                    currentChar = string[i];
+                    counter = 1;
+                }
+            }
+            
+            System.out.print(currentChar + counter);
+ 
+            }
+
+            else {
+                String[] string = sc.next().split("");
+                
+                for (int i = 1; i < string.length - 1; i += 2){
+                  String character = string[i];
+                  int number = Integer.parseInt(string [i + 1]);
+                  for (int j = 0; j < number; j++){
+                      System.out.print(character);
+                   }
+                }                
+           }            
+       }
+}
